@@ -1,0 +1,117 @@
+#include<stdio.h>
+struct  stack
+{
+    int item[50];
+    int top;
+};
+
+int main()
+{
+  int ch,data,flag=1;
+  char c;
+  struct stack st;
+  void push(struct stack *,int);
+  int pop(struct stack *);
+  int peep(struct stack *);
+  int display_stack(struct stack *st);
+  st.top=-1;
+  
+  while(flag)
+  {
+
+	printf("\n\n\t\t\t	MENU");
+	  printf("\n\t\t\t****************");
+	  printf("\n\t\t\t 1) PUSH");
+	  printf("\n\t\t\t 2) POP");
+	  printf("\n\t\t\t 3) PEEP");
+	  printf("\n\t\t\t 4) DISPLAY");
+	  printf("\n\t\t\t 0) EXIT");
+	printf("\n\n\t\t\tEnter your choice: ");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1 :
+
+			printf("\n\t\t\t Enter the number to be pushed : ");
+			scanf("%d",&data);
+			push(&st, data);
+			break;
+		case 2 :
+
+            pop(&st);
+			c=getchar();
+			break;
+        case 3 :
+
+			peep(&st);
+			c=getchar();
+			break;
+        case 4 :
+			display_stack(&st);
+			break;
+		case 0 :
+			flag=0;
+			break;
+	}
+  }
+  return 0;
+}
+
+void push(struct stack *st, int data)
+{
+  if(st->top ==49)
+  {
+	printf("\n\n\t\t\t Stack full");
+  }
+  else
+  {
+	st->top=st->top+1;
+	st->item[st->top]=data;
+  }
+}
+
+int pop(struct stack *st)
+{
+	int data;
+	char c;
+	if(st->top==-1)
+	{
+		printf("\n\n\t\t\t Stack is empty");
+		c=getchar();
+	}
+	else
+	{
+	    printf("\n\t\t\t The popped element is : %d",st->item[st->top]);
+		st->top--;
+		c=getchar();
+	}
+	return 0;
+}
+int peep(struct stack *st)
+{
+	int data;
+	char c;
+	if(st->top==-1)
+	{
+		printf("\n\n\t\t\t Stack is empty");
+		c=getchar();
+	}
+	else
+	{
+	    printf("\n\t\t\t The top element of the stack: %d",st->item[st->top]);
+		c=getchar();
+	}
+	return 0;
+}
+int display_stack(struct stack *st)
+{
+    char c;
+    int i;
+    for(i=st->top;i>=0;i--)
+    {
+            printf("\n\t\t\t |%5d|",st->item[i]);
+            printf("\n\t\t\t _______");
+    }
+    c=getchar();
+    c=getchar();
+}
